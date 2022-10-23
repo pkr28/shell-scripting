@@ -2,7 +2,7 @@
 set -e
 
 COMPONENT=frontend
-source /components/common.sh
+source components/common.sh
 
 echo -n " Installing Nginx : " 
 yum install nginx -y &>> $LOG
