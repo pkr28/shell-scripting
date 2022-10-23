@@ -5,7 +5,7 @@ USERID=$(id -u)
 COMPONENT=$COMPONENT
 
 if [ "$USERID" eq "0" ] ; then
-    echo "Running as root User" 
+    echo "You should be run as root User" 
 fi
 
 echo " Installing Nginx : "
@@ -35,5 +35,4 @@ yum install nginx -y
 
 # echo "Restaring the service: "
 # systemctl restart nginx
-# systemctl status nginx
 # systemctl status nginx -l
