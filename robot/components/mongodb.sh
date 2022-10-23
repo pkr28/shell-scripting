@@ -21,18 +21,18 @@ systemctl enable mongod
 systemctl start mongod
 stat $?
 
-# echo -n "Downloading $COMPONENT schema :"
-# curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip" &>> $LOG
-# stat $?
+echo -n "Downloading $COMPONENT schema :"
+curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip" &>> $LOG
+stat $?
 
-# echo -n "Unzipping $COMPONENT schema"
-# cd /tmp
-# unzip $COMPONENT.zip &>> $LOG
-# cd $COMPONENT-main
-# mongo < catalogue.js &>> $LOG
-# mongo < users.js &>> $LOG
-# stat $?
+echo -n "Unzipping $COMPONENT schema"
+cd /tmp
+unzip $COMPONENT.zip &>> $LOG
+cd $COMPONENT-main
+mongo < catalogue.js &>> $LOG
+mongo < users.js &>> $LOG
+stat $?
 
-# echo -n "Restarting $COMPONENT service"
-# systemctl restart mongod
-# stat $?
+echo -n "Restarting $COMPONENT service"
+systemctl restart mongod
+stat $?
