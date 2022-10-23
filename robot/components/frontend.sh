@@ -3,7 +3,8 @@
 set -e
 
 USERID=$(id -u)
-COMPONENT=$COMPONENT
+COMPONENT=frontend
+LOG=$(/tmp/$COMPONENT.log)
 
 stat() {
     if [ $1 -eq 0 ]; then
@@ -18,7 +19,7 @@ if [ $USERID -ne 0 ] ; then
     exit 1
 fi
 
-echo -n " Installing Nginx : "
+echo -n " Installing Nginx : " &>> $LOG
 yum install nginx -y 
 stat $?
 
