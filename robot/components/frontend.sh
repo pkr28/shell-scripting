@@ -23,30 +23,30 @@ echo -n " Installing Nginx : "
 yum install nginx -y &>> $LOG
 stat $?
 
-echo "Downloading the $COMPONENT :"
+echo -n "Downloading the $COMPONENT :"
 curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 stat $?
 
-echo "Moving to $COMPONENT :"
+echo -n "Moving to $COMPONENT :"
 cd /usr/share/nginx/html
 rm -rf * &>> $LOG
 stat $?
 
-echo "unzip $COMPONENT files: "
+echo -n "unzip $COMPONENT files: "
 unzip /tmp/$COMPONENT.zip &>> $LOG
 stat $?
 
-echo "Moving $COMPONENT files:"
+echo -n "Moving $COMPONENT files:"
 mv $COMPONENT-main/* .
 mv static/* .
 rm -rf $COMPONENT-main README.md &>> $LOG
 stat $?
 
-echo "Configuring proxy file:"
+echo -n "Configuring proxy file:"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf &>> $LOG
 stat $?
 
-echo "Staring the service: "
+echo -n "Staring the service: "
 systemctl start nginx 
 systemctl enable nginx
 stat $?
