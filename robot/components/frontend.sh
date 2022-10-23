@@ -4,7 +4,7 @@ set -e
 
 USERID=$(id -u)
 COMPONENT=frontend
-LOG=$(/tmp/$COMPONENT.log)
+LOG=/tmp/$COMPONENT.log
 
 stat() {
     if [ $1 -eq 0 ]; then
