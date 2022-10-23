@@ -20,7 +20,7 @@ if [ $USERID -ne 0 ] ; then
 fi
 
 echo -n " Installing Nginx : " 
-yum install nginx -y &>> /tmp/frontend.log
+yum install nginx -y &>> $LOG
 stat $?
 
 # echo "Staring nginx service "
