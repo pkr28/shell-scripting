@@ -13,7 +13,7 @@ yum install -y mongodb-org &>> $LOG
 stat $?
 
 echo -n "Editing the conf file :"
-sed -i -e 's/127.0.0.1/0.0.0.0' /etc/mongod.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf 
 stat $?
 
 echo -n "Starting mongodb service"
