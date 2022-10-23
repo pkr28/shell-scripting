@@ -5,7 +5,7 @@ USERID=$(id -u)
 COMPONENT=$COMPONENT
 
 if [ "$USERID" -ne "0" ] ; then
-    echo "You should be run as root User" 
+    echo "You need to be root User to run this script" 
 fi
 
 echo " Installing Nginx : "
