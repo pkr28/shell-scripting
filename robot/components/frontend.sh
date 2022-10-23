@@ -5,13 +5,22 @@ set -e
 USERID=$(id -u)
 COMPONENT=$COMPONENT
 
+stat() {
+    if [ $1 -eq 0 ]; then
+        echo -e "\e[32m Success \e[0m"
+    else 
+        echo -e "\e[31m Failure \e[0m"
+    fi
+}
+
 if [ $USERID -ne 0 ] ; then
     echo -e "\e[31m You need to be root User to run this script \e[0m" 
     exit 1
 fi
 
 echo " Installing Nginx : "
-yum install nginx -y
+yum install nginx -y 
+stat $?
 
 # echo "Staring nginx service "
 # systemctl enable nginx
