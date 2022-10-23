@@ -1,10 +1,10 @@
 #!/bin/bash
-
+set -e
 
 USERID=$(id -u)
 COMPONENT=$COMPONENT
 
-if [ "$USERID" eq "0" ] ; then
+if [ "$USERID" -ne "0" ] ; then
     echo "You should be run as root User" 
 fi
 
