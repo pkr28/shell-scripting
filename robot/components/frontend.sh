@@ -5,7 +5,7 @@ set -e
 USERID=$(id -u)
 COMPONENT=$COMPONENT
 
-if [ "$USERID" -ne "0" ] ; then
+if [ $USERID -ne 0 ] ; then
     echo -e "\e[31m You need to be root User to run this script \e[0m" 
 fi
 
