@@ -21,6 +21,7 @@ fi
 
 echo -n " Installing Nginx : " 
 yum install nginx -y &>> /tmp/frontend.log
+
 stat $?
 
 echo "Staring nginx service "
