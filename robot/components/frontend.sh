@@ -20,7 +20,7 @@ if [ $USERID -ne 0 ] ; then
 fi
 
 echo -n " Installing Nginx : " 
-yum install nginx -y &>> $LOG
+yum install nginxefwefccv -y &>> $LOG
 stat $?
 
 echo -n "Downloading the $COMPONENT :"
