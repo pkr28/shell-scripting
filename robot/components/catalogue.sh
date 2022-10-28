@@ -29,7 +29,7 @@ unzip -o /tmp/$COMPONENT.zip &>> $LOG
 stat $?
 
 echo -n "Cleaning and Moving $COMPONENT files"
-rm -rf $APPUSER
+rm -rf $COMPONENT
 mv $COMPONENT-main $COMPONENT
 cd /home/$APPUSER/$COMPONENT
 npm install &>> $LOG
@@ -40,7 +40,7 @@ chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT && chmod -R 775 /home/$APPU
 stat $?
 
 echo -n "Editing $COMPONENT services file: "
-sed -i -e 's/MONGO_DNSNAME/mongodb.robo.internal/' /home/$APPUSER/$COMPONENT/systemd.service 
+sed -i -e 's/MONGO_DNSNAME/mongodb.robot.internal/' /home/$APPUSER/$COMPONENT/systemd.service 
 stat $?
 
 echo -n "Starting the service"
