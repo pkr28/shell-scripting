@@ -21,7 +21,7 @@ curl -s -L -o /tmp/$COMPONENT.zip "https://github.com/stans-robot-project/$COMPO
 stat $?
 
 echo -n "Changing to $APPUSER"
-cd /home/roboshop
+cd /home/$APPUSER
 stat $?
 
 echo -n "Unzipping $COMPONENT components : "
@@ -30,19 +30,19 @@ unzip -o /tmp/$COMPONENT.zip &>> $LOG
 echo -n "Cleaning and Moving $COMPONENT files"
 rm -rf $APPUSER
 mv $COMPONENT-main $COMPONENT
-cd /home/roboshop/$COMPONENT
+cd /home/$APPUSER/$COMPONENT
 npm install &>> $LOG
 
 echo -n "Changing Permissions of $APPUSER:"
-chown -R $APPUSER:$APPUSER /home/roboshop/$COMPONENT && chmod -R 775 /home/roboshop/$COMPONENT 
+chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT && chmod -R 775 /home/$APPUSER/$COMPONENT 
 stat $?
 
 echo -n "Editing $COMPONENT services file: "
-sed -e -i 's/MONGO_DNSNAME/mongodb.robo.internal/' /home/roboshop/$COMPONENT/systemd.service 
+sed -e -i 's/MONGO_DNSNAME/mongodb.robo.internal/' /home/$APPUSER/$COMPONENT/systemd.service 
 stat $?
 
 echo -n "Starting the service"
-mv /home/roboshop/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
 systemctl daemon-reload
 systemctl start $COMPONENT
 systemctl enable $COMPONENT
