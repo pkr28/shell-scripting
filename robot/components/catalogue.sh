@@ -26,19 +26,21 @@ stat $?
 
 echo -n "Unzipping $COMPONENT components : "
 unzip -o /tmp/$COMPONENT.zip &>> $LOG
+stat $?
 
 echo -n "Cleaning and Moving $COMPONENT files"
 rm -rf $APPUSER
 mv $COMPONENT-main $COMPONENT
 cd /home/$APPUSER/$COMPONENT
 npm install &>> $LOG
+stat $?
 
 echo -n "Changing Permissions of $APPUSER:"
 chown -R $APPUSER:$APPUSER /home/$APPUSER/$COMPONENT && chmod -R 775 /home/$APPUSER/$COMPONENT 
 stat $?
 
 echo -n "Editing $COMPONENT services file: "
-sed -e -i 's/MONGO_DNSNAME/mongodb.robo.internal/' /home/$APPUSER/$COMPONENT/systemd.service 
+sed -i -e 's/MONGO_DNSNAME/mongodb.robo.internal/' /home/$APPUSER/$COMPONENT/systemd.service 
 stat $?
 
 echo -n "Starting the service"
@@ -47,4 +49,5 @@ systemctl daemon-reload
 systemctl start $COMPONENT
 systemctl enable $COMPONENT
 systemctl status $COMPONENT -l &>> $LOG
+stat $?
 
